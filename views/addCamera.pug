@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+    form.form(action='/addCamera' method='POST')
+      h2 Fill out the form to add a new camera to your "bag."
+      label(for='brand') Camera Brand
+      input(type='text' name='brand')
+      label(for='model') Camera Model
+      input(type='text' name='model')
+      label(for='foramt') Film Format
+      select(name='format')
+        option(value='35mm') 35mm
+        option(value='medium-format') Medium Format
+        option(value='large-format') Large Format
+      input(type='submit' value='Add Camera!')
