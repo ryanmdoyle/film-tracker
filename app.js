@@ -23,7 +23,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use((req, res, next) => {
   res.locals.h = helpers; //allows helpers to be used
   res.locals.user = req.user || null; // sets up a user
-  res.locals.currentPath = req.path; //
+  res.locals.currentPath = req.path; // sets up using paths
+  res.locals.moment = require('moment'); //allows use of moment in pug
   next();
 })
 

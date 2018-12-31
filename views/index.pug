@@ -5,5 +5,7 @@ block content
   .inner
     h2 Active Rolls
     each roll in activeRolls
-      p= `${roll.filmBrand}`
+      h3= `${roll.filmBrand} ${roll.filmName}`
+      p= `ISO: ${roll.iso} - Started on ${moment(roll.date).format("MMM Do YY")}`
+      p= `${roll.description || 'no description' }`
   
