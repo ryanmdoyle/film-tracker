@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "concurrently \"npm run assets\" \"npm run watch\" --names \"cb\" --prefix name",
+    "start": "concurrently \"npm run assets\" \"npm run watch\" --names \"🖥️ 📦\" --prefix name",
     "assets": "webpack -w",
     "watch": "nodemon start.js",
     "build": "webpack"
@@ -12,6 +12,7 @@
     "@babel/core": "^7.2.2",
     "babel-loader": "^8.0.4",
     "body-parser": "^1.18.3",
+    "concurrently": "^4.1.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "dotenv": "^6.2.0",
@@ -22,7 +23,9 @@
     "morgan": "~1.9.0",
     "path": "^0.12.7",
     "pug": "2.0.0-beta11",
-    "style-loader": "^0.23.1"
+    "slugs": "^0.1.3",
+    "style-loader": "^0.23.1",
+    "unique-slug": "^2.0.1"
   },
   "devDependencies": {
     "concurrent": "^0.3.2",

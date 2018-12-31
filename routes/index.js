@@ -12,9 +12,9 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/addCamera', cameraController.addCameraForm)
-router.post('/addCamera', cameraController.addCamera)
+router.post('/addCamera', catchErrors(cameraController.addCamera));
 
-router.get('/newRoll', cameraController.newRollForm)
+router.get('/newRoll', catchErrors(cameraController.newRollForm));
 router.post('/newRoll', catchErrors(cameraController.newRoll))
 
 module.exports = router;

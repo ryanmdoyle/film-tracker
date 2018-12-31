@@ -1,11 +1,15 @@
 const mongoose = require('mongoose');
 const Film = mongoose.model('Film');
+const Camera = mongoose.model('Camera');
+
+
 
 exports.addCameraForm = (req, res) => {
   res.render('addCamera', { title: "Add a Camera" })
 }
 
-exports.addCamera = (req, res) => {
+exports.addCamera = async (req, res) => {
+  const camera = await new Camera(req.body).save();
   res.send(req.body);
   // render the home with the list of active rolls, flash to add a roll to that camera
 }
@@ -19,8 +23,10 @@ exports.addLens = (req, res) => {
   // render the home with the list of active rolls, flash to add a roll to that camera
 }
 
-exports.newRollForm = (req, res) => {
-  res.render('newRoll', { title: "Start a New Roll"} )
+exports.newRollForm = async (req, res) => {
+  const cameras = await Camera.find({})
+  // res.send(cameras);
+  res.render('newRoll', { title: "Start a New Roll", cameras })
 }
 
 exports.newRoll = async (req, res) => {

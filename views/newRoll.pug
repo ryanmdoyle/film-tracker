@@ -5,9 +5,8 @@ block content
     form.form(action='/newRoll' method='POST')
       label(for='camera') Select the camera:
       select(name='camera')
-        option(value='camera1') Camera 1
-        option(value='camera2') Camera 2
-        option(value='camera3') Camera 3
+        each camera in cameras
+          option(value=`${camera.brand} ${camera.model}`)= `${camera.brand} ${camera.model}`
       label(for='iso') ISO
       input(type="text" name='iso' placeholder="enter ISO (ex: 100, 200, 400)")
       br
