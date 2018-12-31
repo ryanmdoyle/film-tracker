@@ -2,4 +2,8 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  .inner
+    h2 Active Rolls
+    each roll in activeRolls
+      p= `${roll.filmBrand}`
+  

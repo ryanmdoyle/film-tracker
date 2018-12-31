@@ -26,11 +26,22 @@ const filmSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  active: {
+    type: Boolean,
+    default: true
   }
 }, 
 {
   toJSON: { virtuals: true }, // pulls in data from the reviews virtual field if the data is being parsed to JSON or Object
   toObject: { virtuals: true }
+});
+
+filmSchema.pre('save', async function(next) {
+  if (this.date === null) {
+    this.date = await Date.now();
+  }
+  next();
 });
 
 module.exports = mongoose.model('Film', filmSchema);

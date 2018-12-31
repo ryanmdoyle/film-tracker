@@ -7,9 +7,7 @@ const {catchErrors} = require('../handlers/errorHandlers');
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router.get('/', catchErrors(cameraController.activeRolls));
 
 router.get('/addCamera', cameraController.addCameraForm)
 router.post('/addCamera', catchErrors(cameraController.addCamera));

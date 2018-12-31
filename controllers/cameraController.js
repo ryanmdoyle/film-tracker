@@ -2,7 +2,10 @@ const mongoose = require('mongoose');
 const Film = mongoose.model('Film');
 const Camera = mongoose.model('Camera');
 
-
+exports.activeRolls = async (req, res) => {
+  const rolls = await Film.find({active: true});
+  res.render('index', { title: 'Film Tracker', activeRolls: rolls })
+}
 
 exports.addCameraForm = (req, res) => {
   res.render('addCamera', { title: "Add a Camera" })

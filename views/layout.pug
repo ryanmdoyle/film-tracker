@@ -4,6 +4,16 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
     script()
+  .nav
+    ul.nav__ul
+      li.nav__li--logo
+        a(href="/")
+          != h.icon('006-retro')
+      li.nav__li--spacer
+      a(href="/newRoll")
+        li.nav__li--item Start New Roll
+      a(href="/addCamera")
+        li.nav__li--item Add Camera
   body
     block content
   block scripts

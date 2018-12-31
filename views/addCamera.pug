@@ -2,8 +2,9 @@ extends layout
 
 block content
   h1= title
+  .inner
+    p Fill out the form to add a new camera to your "bag."
     form.form(action='/addCamera' method='POST')
-      h2 Fill out the form to add a new camera to your "bag."
       label(for='brand') Camera Brand
       input(type='text' name='brand')
       label(for='model') Camera Model
@@ -13,4 +14,4 @@ block content
         option(value='35mm') 35mm
         option(value='medium-format') Medium Format
         option(value='large-format') Large Format
-      input(type='submit' value='Add Camera!')
+      input.button(type='submit' value='Add Camera!')
