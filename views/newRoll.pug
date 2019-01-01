@@ -4,18 +4,18 @@ block content
   h1= title
   .inner
     form.form(action='/newRoll' method='POST')
-      label(for='camera') Select the camera:
-      select(name='camera')
-        each camera in cameras
-          option(value=`${camera.brand} ${camera.model}`)= `${camera.brand} ${camera.model}`
-      label(for='iso') ISO
-      input(type="text" name='iso' placeholder="enter ISO (ex: 100, 200, 400)")
-      label(for='date') Date Started
-      input(type="date" name='date')
       label(for='filmBrand') Film Manufacture/Brand
       input(type="text" name='filmBrand' placeholder="Kodak, Fujifilm, Ilford, etc.")
       label(for='filmName') Film Name
       input(type="text" name='filmName' placeholder="HP5, Portra, etc.")
+      label(for='iso') ISO
+      input(type="text" name='iso' placeholder="enter ISO (ex: 100, 200, 400)")
+      label(for='camera') Select the camera:
+      select(name='camera')
+        each camera in cameras
+          option(value=`${camera.brand} ${camera.model}`)= `${camera.brand} ${camera.model}`
+      label(for='date') Date Started
+      input(type="date" name='date')
       label(for='description') Description/Notes
       input(type="text" name='description' placeholder="other information")
       input.button(type='submit' value='Load a new roll!')

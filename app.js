@@ -20,6 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// A middleware that allows functions to be used in the pug templates
 app.use((req, res, next) => {
   res.locals.h = helpers; //allows helpers to be used
   res.locals.user = req.user || null; // sets up a user
