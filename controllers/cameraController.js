@@ -40,3 +40,7 @@ exports.newRoll = async (req, res) => {
 exports.loadFilm = (req, res) => {
   res.send(req.body);
 }
+
+exports.login = (req, res) => {
+  res.render('login', { title: "Login to Film Tracker"});
+}

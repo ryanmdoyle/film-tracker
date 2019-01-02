@@ -14,6 +14,7 @@ mongoose.connection.on('error', (err) => {
 require('./models/Camera');
 require('./models/Film');
 require('./models/Photo');
+require('./models/User');
 
 // Start our app
 const app = require('./app');

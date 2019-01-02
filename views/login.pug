@@ -1,0 +1,10 @@
+extends layout
+
+include mixins/_loginForm
+include mixins/_forgot
+
+block content
+  h1 Login
+  .inner
+    +loginForm()
+    +forgotForm()
