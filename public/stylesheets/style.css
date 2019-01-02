@@ -109,3 +109,57 @@ svg {
   max-width:900px;
   margin: 0 auto;
 }
+
+.rollsContainer {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.activeRoll {
+  width: 100%;
+  min-height: 100px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  padding: 5px 20px 10px 20px;
+  display: flex;
+  border: 3px solid black;
+}
+
+.activeRoll__info {
+  flex: 2;
+}
+
+.activeRoll__buttonArea {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.activeRoll__button--button {
+  height: 50px;
+  width: 90%;
+  color: white;
+  background-color: black;
+  margin: 10px 10px 10px 10px;
+  font-size: 0.9em;
+}
+
+.activeRoll__button--button:hover {
+  color: black;
+  background-color: white;
+}
+
+@media (max-width: 700px) {
+  .activeRoll {
+    flex-direction: column;
+  }
+  .activeRoll__buttonArea {
+    width: 100%;
+  }
+}
