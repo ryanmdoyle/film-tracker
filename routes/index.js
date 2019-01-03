@@ -18,6 +18,6 @@ router.post('/newRoll', catchErrors(cameraController.newRoll));
 
 router.get('/login', userController.loginForm);
 router.get('/register', userController.registerForm);
-router.post('/register', userController.validateRegister, userController.register)
+router.post('/register', userController.validateRegister, catchErrors(userController.register));
 
 module.exports = router;

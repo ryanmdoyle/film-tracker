@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
-const promisify = require('es6-promisify');
 
 exports.loginForm = (req, res) => {
   res.render('login', { title: 'Login' });
@@ -34,10 +33,15 @@ exports.validateRegister = (req, res, next) => { //checks all the form values, s
 
 exports.register = async (req, res, next) => { //registers the user to the db after the info is cleaned up in validateRegister
   const user = new User({ email: req.body.email, name: req.body.name });
-  const register = promisify(User.register, User);
-  await register(user, req.body.password);
+  await User.register(user, req.body.password, (err) => {
+    if (err) { 
+      console.error(err)
+    } else {
+      console.log("User has been registered successully!")
+    }
+  });
   // next(); // pass to authController.login to log the user in to their account automatically following registration
-  res.redirect('index');
+  res.render('index');
 };
 
 exports.account = (req, res) => {

@@ -10,9 +10,9 @@ const helpers = require('./helpers');
 // Things for users and validation
 const passport = require('passport');
 const promisify = require('es6-promisify');
-const flash = require('connect-flash');
+const flash = require('connect-flash'); //passes things to next requests
 const expressValidator = require('express-validator');
-const session = require('express-session');
+const session = require('express-session');  
 const MongoStore = require('connect-mongo')(session);
 
 const indexRouter = require('./routes/index');
@@ -58,7 +58,13 @@ app.use(session({
 
 // Passport JS handles logins
 app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.session()); // app.use(session()) must come before this
+const User = require('./models/User');
+
+passport.use(User.createStrategy()); // CHANGE: USE "createStrategy" INSTEAD OF "authenticate"
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // The flash middleware let's us use req.flash('error', 'Shit!'), which will then pass that message to the next page the user requests
 app.use(flash());
