@@ -25,11 +25,6 @@ label {
   font-weight: bold;
 }
 
-svg {
-  height: 80px;
-  width: 80px;
-}
-
 .button {
   background-color: black; /* Green */
   border: none;
@@ -49,38 +44,52 @@ svg {
 
 .nav {
   font-family: sans-serif;
-  font-size: 1.5em;
+  font-size: 1.3em;
   font-weight: bold;
   
   width: 100vw;
   
   border-bottom: 1px solid gray;
-  justify-items: center;
 }
 
 .nav__ul {
   list-style-type: none;
   display: flex;
   margin: 0;
-  padding: 20px;
+  padding: 15px 1%;  
 }
 
-.nav__li--logo {
-  padding: 0 10px;
-  flex: 0 1 auto;
+.nav__li {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav__li svg, .nav__li p {
+  width: 100%;
+  text-align: center;
+  font-size: 1em;
+  margin: 0;
 }
 
 .nav__li--spacer {
   flex: 1 1 auto;
 }
 
-.nav__li--item {
+.nav__li--link {
+  max-width: 110px;
   padding: 0 20px;
   flex: 0 1 auto;
 }
 
-.nav__logo {
-  height: 100px;
+svg {
+  height: 50px;
+}
+
+#nav__li--logo, #nav__li--logo svg {
+  padding: 0 10px;
+  flex: 0 1 auto;
+  height: 80px;
+  width: 80px;
 }
 
 .flex__container {
@@ -160,4 +169,71 @@ svg {
   .activeRoll__buttonArea {
     width: 100%;
   }
+}
+
+/* ------- FLASHES -------- */
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(-10px);
+ }
+  50% {
+    transform: translateX(10px);
+ }
+  100% {
+    transform: translateX(0px);
+ }
+}
+.flash {
+  background: white;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  margin-bottom: 2rem;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+  border-radius: 3px;
+  display: flex;
+  animation: slideIn forwards 0.1s ease-in-out 2;
+  animation-timing-function: cubic-bezier(0.01, 1.68, 0.58, 1);
+}
+.flash + .flash {
+  animation-delay: 0.55s;
+}
+.flash + .flash + .flash {
+  animation-delay: 0.6s;
+}
+.flash__text {
+  flex: 1;
+}
+.flash__remove {
+  background: none;
+  border: 0;
+}
+.flash__remove:hover {
+  color: yellow;
+}
+.flash:after {
+  content: '';
+  display: block;
+  background: white;
+  position: absolute;
+  width: calc(100% - 16px);
+  height: calc(100% - 16px);
+  top: 8px;
+  left: 8px;
+  z-index: -1;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+.flash--success {
+  background: linear-gradient(135deg, rgba(210, 255, 82, 1) 0%, rgba(145, 232, 66, 1) 100%);
+}
+.flash--error {
+  background: linear-gradient(20deg, rgba(255, 0, 0, 1) 0%, rgba(200, 0, 0, 1) 100%);
+}
+.flash--info {
+  background: linear-gradient(35deg, rgba(241, 231, 103, 1) 0%, rgba(254, 182, 69, 1) 100%);
+}
+.flash p {
+  margin: 0;
 }

@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-const cameraController = require('../controllers/cameraController')
-const userController = require('../controllers/userController')
+const cameraController = require('../controllers/cameraController');
+const userController = require('../controllers/userController');
+const authController = require('../controllers/authController')
 
 const {catchErrors} = require('../handlers/errorHandlers');
 
@@ -17,7 +18,14 @@ router.get('/newRoll', catchErrors(cameraController.newRollForm));
 router.post('/newRoll', catchErrors(cameraController.newRoll));
 
 router.get('/login', userController.loginForm);
+router.post('/login', authController.login)
+router.get('/success', (req, res) => { res.render('success')} );
+
 router.get('/register', userController.registerForm);
-router.post('/register', userController.validateRegister, catchErrors(userController.register));
+router.post('/register', 
+  userController.validateRegister, 
+  userController.register,
+  authController.login
+);
 
 module.exports = router;

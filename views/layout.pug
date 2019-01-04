@@ -4,31 +4,50 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
     script()
-  .nav
-    ul.nav__ul
-      li.nav__li--logo
-        a(href="/")
-          != h.icon('006-retro')
-      li.nav__li--spacer
-      a(href="/")
-        li.nav__li--item.flex__container--centered View Active Rolls
-      a(href="/newRoll")
-        li.nav__li--item.flex__container--centered Start New Roll
-          != h.icon('006-retro')
-      a(href="/addCamera")
-        li.nav__li--item.flex__container--centered Add Camera
-          != h.icon('006-retro')
-      if user
-        a(href='/account')
-          li.nav__li--item.flex__container--centered Account
-        a(href='/logout')
-          li.nav__li--item.flex__container--centered Logout
-      else
-        a(href="/login")
-          li.nav__li--item.flex__container--centered Login
-        a(href="/Register")
-          li.nav__li--item.flex__container--centered Register
   body
+    .nav
+      ul.nav__ul
+
+        li#nav__li--logo
+          a(href="/")
+            != h.icon('006-retro')
+        li.nav__li.nav__li--spacer
+        li.nav__li.nav__li--link
+          a(href="/")
+            != h.icon('035-camera')
+            p Active Rolls
+        li.nav__li.nav__li--link
+          a(href="/newRoll")
+            != h.icon('018-camera-roll')
+            p New Roll
+        li.nav__li.nav__li--link
+          a(href="/addCamera")
+            != h.icon('036-camera-1')
+            p Add Camera
+  
+        if user
+          a(href='/account')
+            li.nav__li.nav__li--link.flex__container--centered Account
+          a(href='/logout')
+            li.nav__li.nav__li--link.flex__container--centered Logout
+        else
+          a(href="/login")
+            li.nav__li.nav__li--link.flex__container--centered Login
+          a(href="/Register")
+            li.nav__li.nav__li--link.flex__container--centered Register
+  
     block content
+
+    block messages
+      if locals.flashes
+        .inner
+          .flash-messages
+            - const categories = Object.keys(locals.flashes)
+            each category in categories
+              each message in flashes[category]
+                .flash(class=`flash--${category}`)
+                  p.flash__text!= message
+                  button.flash__remove(onClick="this.parentElement.remove()") &times;
+  
   block scripts
     script(src='/dist/main.bundle.js')

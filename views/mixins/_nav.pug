@@ -1,0 +1,36 @@
+mixin nav()
+
+block nav
+  .nav
+    ul.nav__ul
+      li.nav__li--logo
+        a(href="/")
+          != h.icon('006-retro')
+
+      li.nav__li--spacer
+      
+      li.nav__li--item.flex__container--centered
+        a(href="/")
+          != h.icon('006-retro')
+          span Active Rolls
+      
+      li.nav__li--item.flex__container--centered
+        a(href="/newRoll")
+          != h.icon('006-retro')
+          span New Roll
+      
+      li.nav__li--item.flex__container--centered
+        a(href="/addCamera")
+          != h.icon('006-retro')
+          span Add Camera
+      
+      if user
+        a(href='/account')
+          li.nav__li--item.flex__container--centered Account
+        a(href='/logout')
+          li.nav__li--item.flex__container--centered Logout
+      else
+        a(href="/login")
+          li.nav__li--item.flex__container--centered Login
+        a(href="/Register")
+          li.nav__li--item.flex__container--centered Register

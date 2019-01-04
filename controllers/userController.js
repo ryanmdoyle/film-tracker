@@ -37,11 +37,10 @@ exports.register = async (req, res, next) => { //registers the user to the db af
     if (err) { 
       console.error(err)
     } else {
-      console.log("User has been registered successully!")
+      console.log(`${user} has been registered successully!`)
     }
   });
-  // next(); // pass to authController.login to log the user in to their account automatically following registration
-  res.render('index');
+  next(); // pass to authController.login to log the user in to their account automatically following registration
 };
 
 exports.account = (req, res) => {

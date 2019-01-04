@@ -1,19 +1,18 @@
-const createError = require('http-errors');
+const session = require('express-session');  
 const express = require('express');
 const mongoose = require('mongoose');
+const MongoStore = require('connect-mongo')(session);
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser')
-const logger = require('morgan');
-const helpers = require('./helpers');
-
-// Things for users and validation
 const passport = require('passport');
 const promisify = require('es6-promisify');
 const flash = require('connect-flash'); //passes things to next requests
 const expressValidator = require('express-validator');
-const session = require('express-session');  
-const MongoStore = require('connect-mongo')(session);
+const createError = require('http-errors');
+const logger = require('morgan');
+const helpers = require('./helpers');
+require('./handlers/passport');
 
 const indexRouter = require('./routes/index');
 const app = express();
@@ -41,7 +40,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // A middleware that allows functions to be used in the pug templates
 app.use((req, res, next) => {
   res.locals.h = helpers; //allows helpers to be used
-  res.locals.user = req.user || null; // sets up a user
+  res.locals.user = req.user || null; // passes use to locals for pug and other things
   res.locals.currentPath = req.path; // sets up using paths
   res.locals.moment = require('moment'); //allows use of moment in pug
   next();
@@ -56,15 +55,9 @@ app.use(session({
   store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
 
-// Passport JS handles logins
+// Initialize Passport js and use sessions
 app.use(passport.initialize());
-app.use(passport.session()); // app.use(session()) must come before this
-const User = require('./models/User');
-
-passport.use(User.createStrategy()); // CHANGE: USE "createStrategy" INSTEAD OF "authenticate"
-
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+app.use(passport.session());
 
 // The flash middleware let's us use req.flash('error', 'Shit!'), which will then pass that message to the next page the user requests
 app.use(flash());
