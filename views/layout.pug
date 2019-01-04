@@ -14,12 +14,20 @@ html
         li.nav__li--item.flex__container--centered View Active Rolls
       a(href="/newRoll")
         li.nav__li--item.flex__container--centered Start New Roll
+          != h.icon('006-retro')
       a(href="/addCamera")
         li.nav__li--item.flex__container--centered Add Camera
-      a(href="/login")
-        li.nav__li--item.flex__container--centered Login
-      a(href="/Register")
-        li.nav__li--item.flex__container--centered Register
+          != h.icon('006-retro')
+      if user
+        a(href='/account')
+          li.nav__li--item.flex__container--centered Account
+        a(href='/logout')
+          li.nav__li--item.flex__container--centered Logout
+      else
+        a(href="/login")
+          li.nav__li--item.flex__container--centered Login
+        a(href="/Register")
+          li.nav__li--item.flex__container--centered Register
   body
     block content
   block scripts

@@ -2,17 +2,26 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const photoSchema = new mongoose.Schema({
-  Shutter: {
-    type: Number, 
+  shutter: {
+    type: String, 
     required: "Please enter a shutter speed."
   },
-  Fstop: {
+  fstop: {
     type: Number, 
     required: "Please enter an f-stop value."
   },
-  Notes: Number,
-  Date: Date,
-  Time: Date
+  focalLength: {
+    type: Number
+  },
+  description: String,
+  date: {
+    type: Date,
+    default: Date.now
+  },
+  time: {
+    type: Date,
+    default: Date.now
+  }
 })
 
 module.exports = mongoose.model("Photo", photoSchema)

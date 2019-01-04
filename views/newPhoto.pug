@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  h1= title
+  .inner
+    form.form(action='/newPhoto' method='POST')
+      label(for='shutter') Shutter Speed
+      input(type="text" name='shutter' placeholder="Enter value as the faction of seconds of seconds, such as \'1/125\'")
+
+      label(for='fstop') F-Stop
+      input(type="text" name='fstop' placeholder="2.8, 5.6, 11, etc.")
+
+      label(for='focalLength') Lens Focal Length
+      input(type="text" name='focalLength' placeholder="enter focal length in mm. ex. 50, 100, 24")
+
+      label(for='description') Short Description of Subject
+      input(type="text" name='description')
+
+      label(for='date') Date Taken
+      input(type="date" name='date')
+
+      label(for='time') Time Taken
+      input(type="time" name='time')
+
+      label(for='notes') Other Notes
+      input(type="text" name='notes' placeholder="other information")
+
+      input.button(type='submit' value='Record Photo!')
