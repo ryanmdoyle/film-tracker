@@ -17,6 +17,9 @@ router.post('/addCamera', catchErrors(cameraController.addCamera));
 router.get('/newRoll', catchErrors(cameraController.newRollForm));
 router.post('/newRoll', catchErrors(cameraController.newRoll));
 
+router.get('/newPhoto', cameraController.addPhotoForm);
+router.post('/newPhoto', catchErrors(cameraController.addPhotoForm));
+
 router.get('/login', userController.loginForm);
 router.post('/login', authController.login)
 router.get('/success', (req, res) => { res.render('success')} );

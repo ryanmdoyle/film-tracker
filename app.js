@@ -21,6 +21,9 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+//serves files from public folder directly
+app.use(express.static(path.join(__dirname, 'public')));
+
 //WTF is is?  It was here from the express-generator
 app.use(logger('dev'));
 
@@ -33,18 +36,6 @@ app.use(expressValidator());
 
 // deals with cookies passed in the requests
 app.use(cookieParser());
-
-//serves files from public folder directly
-app.use(express.static(path.join(__dirname, 'public')));
-
-// A middleware that allows functions to be used in the pug templates
-app.use((req, res, next) => {
-  res.locals.h = helpers; //allows helpers to be used
-  res.locals.user = req.user || null; // passes use to locals for pug and other things
-  res.locals.currentPath = req.path; // sets up using paths
-  res.locals.moment = require('moment'); //allows use of moment in pug
-  next();
-})
 
 // Sessions allow us to store data on visitors from request to request
 // This keeps users logged in and allows us to send flash messages
@@ -61,6 +52,15 @@ app.use(passport.session());
 
 // The flash middleware let's us use req.flash('error', 'Shit!'), which will then pass that message to the next page the user requests
 app.use(flash());
+
+// A middleware that passes eveything along as a local for all requests 
+app.use((req, res, next) => {
+  res.locals.h = helpers; //allows helpers to be used
+  res.locals.user = req.user || null; // passes use to locals for pug and other things
+  res.locals.currentPath = req.path; // sets up using paths
+  res.locals.moment = require('moment'); //allows use of moment in pug
+  next();
+})
 
 // Use indexRouter (./routes/index.js) for all the routes
 app.use('/', indexRouter);
