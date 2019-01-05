@@ -4,6 +4,6 @@ block content
   h1 Success!
   .inner
     if user
-      p there be a user!
+      p= `${h.dump(user)} is registering as a user`
     else 
-      p no user :(
+      p= `${h.dump(user)} is registering as no user`

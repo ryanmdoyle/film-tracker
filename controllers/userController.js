@@ -35,12 +35,12 @@ exports.register = async (req, res, next) => { //registers the user to the db af
   const user = new User({ email: req.body.email, name: req.body.name });
   await User.register(user, req.body.password, (err) => {
     if (err) { 
-      console.error(err)
+      console.error(err);
+      next(err);
     } else {
-      console.log(`${user} has been registered successully!`)
+      next(); 
     }
   });
-  next(); // pass to authController.login to log the user in to their account automatically following registration
 };
 
 exports.account = (req, res) => {

@@ -9,3 +9,6 @@ exports.siteName = 'Film Tracker';
 
 // inserting an SVG
 exports.icon = (name) => fs.readFileSync(`./public/images/icons/${name}.svg`);
+
+// Dump is a handy debugging function we can use to sort of "console.log" our data
+exports.dump = (obj) => JSON.stringify(obj, null, 2);

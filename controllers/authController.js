@@ -5,16 +5,12 @@ const User = mongoose.model('User');
 // const promisify = require('es6-promisify');
 // const mail = require('../handlers/mail');
 
-// exports.login = passport.authenticate('local', {
-//   failureRedirect: '/failure',
-//   failureFlash: 'Failed Login!',
-//   successRedirect: '/success',
-//   successFlash: 'You are now logged in!'
-// });
-
-exports.login = passport.authenticate('local', function(req, res) {
-  console.log('it worked!')
-})
+exports.login = passport.authenticate('local', {
+  failureRedirect: '/failure',
+  failureFlash: 'Failed Login!',
+  successRedirect: '/success',
+  successFlash: 'You are now logged in!'
+});
 
 exports.logout = (req, res) => {
   req.logout();
