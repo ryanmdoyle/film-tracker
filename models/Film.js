@@ -34,7 +34,10 @@ const filmSchema = new mongoose.Schema({
   },
   photos: [
     { type: mongoose.Schema.ObjectId, ref: 'Photo' }
-  ]
+  ],
+  owner: {
+    type: mongoose.Schema.ObjectId, ref: "User"
+  }
 }, 
 {
   toJSON: { virtuals: true }, // pulls in data from the reviews virtual field if the data is being parsed to JSON or Object
