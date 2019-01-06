@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 
 exports.login = passport.authenticate('local', {
-  failureRedirect: '/failure',
+  failureRedirect: '/login',
   failureFlash: 'Failed Login!',
-  successRedirect: '/success',
+  successRedirect: '/',
   successFlash: 'You are now logged in!'
 });
 

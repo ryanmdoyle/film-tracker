@@ -57,6 +57,7 @@ app.use(flash());
 app.use((req, res, next) => {
   res.locals.h = helpers; //allows helpers to be used
   res.locals.user = req.user || null; // passes use to locals for pug and other things
+  res.locals.flashes = req.flash(); // sets flash messages from connect-flash to locals
   res.locals.currentPath = req.path; // sets up using paths
   res.locals.moment = require('moment'); //allows use of moment in pug
   next();

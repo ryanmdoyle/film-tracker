@@ -24,11 +24,15 @@ router.get('/login', userController.loginForm);
 router.post('/login', authController.login)
 router.get('/success', (req, res) => { res.render('success')} );
 
+router.get('/logout', authController.logout);
+
 router.get('/register', userController.registerForm);
 router.post('/register', 
   userController.validateRegister, 
   userController.register,
   authController.login
 );
+
+router.get('/account', userController.account);
 
 module.exports = router;

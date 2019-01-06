@@ -12,32 +12,29 @@ html
           a(href="/")
             != h.icon('006-retro')
         li.nav__li.nav__li--spacer
-        li.nav__li.nav__li--link
-          a(href="/")
-            != h.icon('035-camera')
-            p Active Rolls
-        li.nav__li.nav__li--link
-          a(href="/newRoll")
-            != h.icon('018-camera-roll')
-            p New Roll
-        li.nav__li.nav__li--link
-          a(href="/addCamera")
-            != h.icon('036-camera-1')
-            p Add Camera
   
         if user
-          a(href='/account')
-            li.nav__li.nav__li--link.flex__container--centered Account
-          a(href='/logout')
-            li.nav__li.nav__li--link.flex__container--centered Logout
+          li.nav__li.nav__li--link
+            a(href="/")
+              != h.icon('035-camera')
+              p Active Rolls
+          li.nav__li.nav__li--link
+            a(href="/newRoll")
+              != h.icon('018-camera-roll')
+              p New Roll
+          li.nav__li.nav__li--link
+            a(href="/addCamera")
+              != h.icon('036-camera-1')
+              p Add Camera
+          li.nav__li.nav__li--link
+            a(href="/account")
+              != h.icon('user')
+              p Account
         else
           a(href="/login")
             li.nav__li.nav__li--link.flex__container--centered Login
           a(href="/Register")
             li.nav__li.nav__li--link.flex__container--centered Register
-  
-    block content
-
     block messages
       if locals.flashes
         .inner
@@ -48,6 +45,9 @@ html
                 .flash(class=`flash--${category}`)
                   p.flash__text!= message
                   button.flash__remove(onClick="this.parentElement.remove()") &times;
+
+    block content
+
   
   block scripts
     script(src='/dist/main.bundle.js')
