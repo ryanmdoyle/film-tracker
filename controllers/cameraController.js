@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Film = mongoose.model('Film');
 const Camera = mongoose.model('Camera');
 const Photo = mongoose.model('Photo');
+const User = mongoose.model('User');
 
 exports.activeRolls = async (req, res) => {
   const rolls = await Film.find({active: true});
@@ -13,9 +14,15 @@ exports.addCameraForm = (req, res) => {
 }
 
 exports.addCamera = async (req, res) => {
-  const camera = await new Camera(req.body).save();
-  res.send(req.body);
-  // render the home with the list of active rolls, flash to add a roll to that camera
+  const camera = await new Camera(req.body).save(); // saves the camera to the db
+  const cameras = req.user.cameras.map(obj => obj.toString()); //makes array of cameras the user has
+  const operator = cameras.includes(camera) ? '$pull' : '$addToSet'; // if the user has the camera, remove(pull) the camera, else, add camera to user (addtoset)
+  const user = await User.findByIdAndUpdate(
+    req.user.id, //find the current user by their id
+    { [operator]: { cameras: camera } }, //$pull(remove) or $addToSet(add to array) the camera
+    { new: true } //return the new user, opposed to what you hade before the update
+  );
+  res.redirect('/'); //redirects to index, where current list of rolls are shown
 }
 
 exports.addPhotoForm = (req, res) => {

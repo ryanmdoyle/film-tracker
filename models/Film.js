@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
 
 // const Camera = require('./Camera');
@@ -30,7 +31,10 @@ const filmSchema = new mongoose.Schema({
   active: {
     type: Boolean,
     default: true
-  }
+  },
+  photos: [
+    { type: mongoose.Schema.ObjectId, ref: 'Photo' }
+  ]
 }, 
 {
   toJSON: { virtuals: true }, // pulls in data from the reviews virtual field if the data is being parsed to JSON or Object
