@@ -5,7 +5,7 @@ const Photo = mongoose.model('Photo');
 const User = mongoose.model('User');
 
 exports.activeRolls = async (req, res) => {
-  const rolls = await Film.find({active: true});
+  const rolls = await Film.find({ active: true, owner: req.user._id });
   res.render('index', { title: 'Film Tracker', activeRolls: rolls })
 }
 
@@ -38,11 +38,6 @@ exports.newRollForm = async (req, res) => {
 }
 
 exports.newRoll = async (req, res) => {
-  // const roll = await new Film(req.body).save();
-  // // add a flash to alert that a new roll has been created
-  // // add logic in case there is an error
-  // res.redirect('index');
-
   const roll = await new Film(req.body);
   roll.owner = req.user.id;
   await roll.save();

@@ -21,8 +21,7 @@ router.get('/newPhoto', cameraController.addPhotoForm);
 router.post('/newPhoto', catchErrors(cameraController.addPhotoForm));
 
 router.get('/login', userController.loginForm);
-router.post('/login', authController.login)
-router.get('/success', (req, res) => { res.render('success')} );
+router.post('/login', authController.login, authController.welcome); //fix with async/await?
 
 router.get('/logout', authController.logout);
 
@@ -30,7 +29,8 @@ router.get('/register', userController.registerForm);
 router.post('/register', 
   userController.validateRegister, 
   userController.register,
-  authController.login
+  authController.login,
+  authController.welcome //fix with async/await?
 );
 
 router.get('/account', userController.account);
