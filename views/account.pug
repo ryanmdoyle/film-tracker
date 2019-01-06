@@ -1,6 +1,8 @@
 extends layout
 
 block content
-  h1= `Welcome ${user.name}`
-  a.button(href='/logout')
-    h1 Logout
+  .inner
+    h1= `Welcome ${user.name}`
+
+    form.form(action='/logout' method='GET')
+      input.button(type='submit' value='Log me out!')
