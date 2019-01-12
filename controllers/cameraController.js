@@ -5,8 +5,13 @@ const Photo = mongoose.model('Photo');
 const User = mongoose.model('User');
 
 exports.activeRolls = async (req, res) => {
-  const rolls = await Film.find({ active: true, owner: req.user._id });
-  res.render('index', { title: 'Film Tracker', activeRolls: rolls })
+  // If there is a user get active rolls, otherwise send to pug template without activeRolls
+  if (req.user) {
+    const rolls = await Film.find({ active: true, owner: req.user.id });
+    res.render('index', { title: 'Film Tracker', activeRolls: rolls }) 
+  } else {
+    res.render('index', { title: 'Film Tracker'}) 
+  }
 }
 
 exports.addCameraForm = (req, res) => {
