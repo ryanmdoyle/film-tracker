@@ -39,8 +39,8 @@ exports.addPhoto = async (req, res) => {
 }
 
 exports.newRollForm = async (req, res) => {
-  const user = await User.findById(req.user.id) // find user (their cameras are contained in 'cameras' array)
-  res.render('newRoll', { title: "Start a New Roll", cameras: user.cameras })
+  const cameras = await Camera.find( { owner : req.user.id} ) // find user (their cameras are contained in 'cameras' array)
+  res.render('newRoll', { title: "Start a New Roll", cameras })
 }
 
 exports.newRoll = async (req, res) => {
