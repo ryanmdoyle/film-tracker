@@ -11,14 +11,17 @@ const {catchErrors} = require('../handlers/errorHandlers');
 /* GET home page. */
 router.get('/', catchErrors(cameraController.activeRolls));
 
+// Adding Cameras
 router.get('/addCamera', cameraController.addCameraForm)
 router.post('/addCamera', catchErrors(cameraController.addCamera));
 
+// Adding Rolls
 router.get('/newRoll', catchErrors(cameraController.newRollForm));
 router.post('/newRoll', catchErrors(cameraController.newRoll));
 
+// Adding Photos to Rolls
 router.get('/newPhoto', cameraController.addPhotoForm);
-router.post('/newPhoto', catchErrors(cameraController.addPhotoForm));
+router.post('/newPhoto', catchErrors(cameraController.addPhoto));
 
 router.get('/login', userController.loginForm);
 router.post('/login', authController.login, authController.welcome); //fix with async/await?

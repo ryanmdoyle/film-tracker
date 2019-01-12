@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
+const uniqueSlug = require('unique-slug');
 
 // const Camera = require('./Camera');
 
@@ -37,7 +38,8 @@ const filmSchema = new mongoose.Schema({
   ],
   owner: {
     type: mongoose.Schema.ObjectId, ref: "User"
-  }
+  },
+  slug: String
 }, 
 {
   toJSON: { virtuals: true }, // pulls in data from the reviews virtual field if the data is being parsed to JSON or Object
@@ -48,6 +50,7 @@ filmSchema.pre('save', async function(next) {
   if (this.date === null) {
     this.date = await Date.now();
   }
+  this.slug = await uniqueSlug(this.date.toString())
   next();
 });
 

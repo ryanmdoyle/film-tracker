@@ -34,8 +34,8 @@ exports.addPhotoForm = (req, res) => {
 }
 
 exports.addPhoto = async (req, res) => {
-  const photo = await new Photo(eq.body).save();
-  res.redirect('index');
+  const photo = await new Photo(req.body).save();
+  res.redirect('/');
 }
 
 exports.newRollForm = async (req, res) => {
