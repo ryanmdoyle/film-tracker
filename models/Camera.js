@@ -15,6 +15,7 @@ const cameraSchema = new mongoose.Schema({
     type: String,
     required: "Please enter the format of this camera. 35mm, medium, large"
   },
+  owner: { type: mongoose.Schema.ObjectId, ref: 'User' } ,
   slug: String
 });
 

@@ -20,9 +20,6 @@ const userSchema = new Schema({
   },
   resetPasswordToken: String,
   resetPasswordExpires: Date,
-  cameras: [
-    { type: mongoose.Schema.ObjectId, ref: 'Camera' } //an array of the camera objectId's (_id's)
-  ],
   rolls: [
     { type: mongoose.Schema.ObjectId, ref: 'Film' }
   ]

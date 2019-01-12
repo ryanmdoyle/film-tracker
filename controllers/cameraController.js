@@ -20,9 +20,12 @@ exports.addCameraForm = (req, res) => {
 
 exports.addCamera = async (req, res) => {
   const camera = await new Camera(req.body).save(); // saves the camera to the db
-  const user = await User.findByIdAndUpdate(
-    req.user.id, //find the current user by their id
-    { '$addToSet': { cameras: camera } }, //$pull(remove) or $addToSet(add to array) the camera
+  
+  // This used to add the camera to an array in the user.
+
+  const owner = await Camera.findByIdAndUpdate(
+    camera._id, //find the current camera by their id
+    { owner: req.user.id },
     { new: true } //return the new user, opposed to what you hade before the update
   );
   res.redirect('/'); //redirects to index, where current list of rolls are shown
@@ -38,8 +41,8 @@ exports.addPhoto = async (req, res) => {
 }
 
 exports.newRollForm = async (req, res) => {
-  const cameras = await Camera.find({}) //add query for only the users cameras
-  res.render('newRoll', { title: "Start a New Roll", cameras })
+  const user = await User.findById(req.user.id) // find user (their cameras are contained in 'cameras' array)
+  res.render('newRoll', { title: "Start a New Roll", cameras: user.cameras })
 }
 
 exports.newRoll = async (req, res) => {
