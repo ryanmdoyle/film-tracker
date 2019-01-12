@@ -20,8 +20,6 @@ exports.addCameraForm = (req, res) => {
 
 exports.addCamera = async (req, res) => {
   const camera = await new Camera(req.body).save(); // saves the camera to the db
-  
-  // This used to add the camera to an array in the user.
 
   const owner = await Camera.findByIdAndUpdate(
     camera._id, //find the current camera by their id
