@@ -21,7 +21,7 @@ const userSchema = new Schema({
   resetPasswordToken: String,
   resetPasswordExpires: Date,
   rolls: [
-    { type: mongoose.Schema.ObjectId, ref: 'Film' }
+    { type: mongoose.Schema.ObjectId, ref: 'Roll' }
   ]
 });
 

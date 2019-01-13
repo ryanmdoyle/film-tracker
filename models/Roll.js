@@ -3,8 +3,6 @@ const Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
 const uniqueSlug = require('unique-slug');
 
-// const Camera = require('./Camera');
-
 const filmSchema = new mongoose.Schema({
   camera: {
     type: String, //chnage ot the model later
@@ -54,4 +52,4 @@ filmSchema.pre('save', async function(next) {
   next();
 });
 
-module.exports = mongoose.model('Film', filmSchema);
+module.exports = mongoose.model('Roll', filmSchema);

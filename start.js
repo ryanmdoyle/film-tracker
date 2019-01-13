@@ -12,7 +12,7 @@ mongoose.connection.on('error', (err) => {
 
 // Add Models here before everything loads up
 require('./models/Camera');
-require('./models/Film');
+require('./models/Roll');
 require('./models/Photo');
 require('./models/User');
 

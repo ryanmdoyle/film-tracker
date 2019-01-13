@@ -1,0 +1,7 @@
+extends layout
+
+  block content
+    h3= `${roll.filmBrand} ${roll.filmName} - ISO ${roll.iso}`
+    b= `📷 ${roll.camera} 🎞️ [number of photos] images recorded`
+    p= `📆 Started on ${moment(roll.date).format("MMM Do YY")}`
+    p= `${roll.description}`                

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Film = mongoose.model('Film');
+const Roll = mongoose.model('Roll');
 const Camera = mongoose.model('Camera');
 const Photo = mongoose.model('Photo');
 const User = mongoose.model('User');
@@ -7,11 +7,19 @@ const User = mongoose.model('User');
 exports.activeRolls = async (req, res) => {
   // If there is a user get active rolls, otherwise send to pug template without activeRolls
   if (req.user) {
-    const rolls = await Film.find({ active: true, owner: req.user.id });
+    const rolls = await Roll.find({ active: true, owner: req.user.id });
     res.render('index', { title: 'Film Tracker', activeRolls: rolls }) 
   } else {
     res.render('index', { title: 'Film Tracker'}) 
   }
+}
+
+exports.getRoll = async (req, res) => {
+  // get roll from params
+  const roll = await Roll.find({ slug: req.params.rollslug })
+  // get all photos assigned to the roll
+  const photos = 
+  res.render('roll', { roll, photos })
 }
 
 exports.addCameraForm = (req, res) => {
@@ -34,7 +42,12 @@ exports.addPhotoForm = (req, res) => {
 }
 
 exports.addPhoto = async (req, res) => {
-  const photo = await new Photo(req.body).save();
+  const photo = await new Photo(req.body); // .save(); // don't save to a collection, save as array item to a Film roll
+  const roll = await Roll.findOneAndUpdate(
+    { slug: req.params.rollslug},
+    { '$addToSet' : { photos: photo } },
+    { new: true }
+  )
   res.redirect('/');
 }
 
@@ -44,7 +57,7 @@ exports.newRollForm = async (req, res) => {
 }
 
 exports.newRoll = async (req, res) => {
-  const roll = await new Film(req.body);
+  const roll = await new Roll(req.body);
   roll.owner = req.user.id;
   await roll.save();
   const user = await User.findByIdAndUpdate(

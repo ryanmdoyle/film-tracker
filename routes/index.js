@@ -20,8 +20,11 @@ router.get('/newRoll', catchErrors(cameraController.newRollForm));
 router.post('/newRoll', catchErrors(cameraController.newRoll));
 
 // Adding Photos to Rolls
-router.get('/newPhoto', cameraController.addPhotoForm);
-router.post('/newPhoto', catchErrors(cameraController.addPhoto));
+router.get('/addPhoto', cameraController.addPhotoForm);
+router.post('/addPhoto', catchErrors(cameraController.addPhoto));
+
+// View for an individual roll
+//router.get('/:rollslug', cameraController.getRoll)
 
 router.get('/login', userController.loginForm);
 router.post('/login', authController.login, authController.welcome); //fix with async/await?

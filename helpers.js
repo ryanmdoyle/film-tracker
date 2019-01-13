@@ -5,7 +5,7 @@ const fs = require('fs');
 exports.moment = require('moment');
 
 // the site name to use everywhere
-exports.siteName = 'Film Tracker';
+exports.siteName = 'Roll Tracker';
 
 // inserting an SVG
 exports.icon = (name) => fs.readFileSync(`./public/images/icons/${name}.svg`);
