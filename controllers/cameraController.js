@@ -7,7 +7,7 @@ const User = mongoose.model('User');
 exports.activeRolls = async (req, res) => {
   // If there is a user get active rolls, otherwise send to pug template without activeRolls
   if (req.user) {
-    const rolls = await Roll.find({ active: true, owner: req.user.id });
+    const rolls = await Roll.find({ active: true, owner: req.user.id }).populate('photos');
     res.render('index', { title: 'Film Tracker', activeRolls: rolls }) 
   } else {
     res.render('index', { title: 'Film Tracker'}) 
@@ -16,9 +16,19 @@ exports.activeRolls = async (req, res) => {
 
 exports.getRoll = async (req, res) => {
   // get roll from params
-  const roll = await Roll.find({ slug: req.params.rollSlug }).populate() // get all photos assigned to the roll
-  
-  res.render('roll', { title: `${roll.filmName} ${roll.bradName} ${roll.iso}`, roll })
+  const photos = [];
+  const roll = await Roll
+                        .findOne({ slug: req.params.rollSlug })
+                        .populate('photos');
+                        // .exec((err, res) => {
+                        //   console.log(res.photos)
+                        //   // res.photos.forEach((photo) => {
+                        //   //   console.log(photo);
+                        //   //   photos.push(photo);
+                        //   // });
+                        // }) // get all photos assigned to the roll
+  console.log(roll);
+  res.render('roll', { title: "replace with film stuff", roll: roll, photos: photos })
 }
 
 exports.addCameraForm = (req, res) => {

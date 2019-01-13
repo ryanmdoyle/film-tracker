@@ -237,3 +237,47 @@ svg {
 .flash p {
   margin: 0;
 }
+
+/* ------- TABLE -------- */
+table.photoTable {
+  border: 1px solid #000000;
+  width: 100%;
+  text-align: left;
+}
+table.photoTable td, table.photoTable th {
+  border: 1px solid #AAAAAA;
+  padding: 4px 4px;
+}
+table.photoTable tbody td {
+  font-size: 13px;
+}
+table.photoTable tr:nth-child(even) {
+  background: #E7E7E7;
+}
+table.photoTable thead {
+  background: #000000;
+}
+table.photoTable thead th {
+  font-size: 15px;
+  font-weight: normal;
+  color: #FFFFFF;
+  text-align: center;
+  border-left: 2px solid #F5F5F5;
+}
+table.photoTable thead th:first-child {
+  border-left: none;
+}
+
+table.photoTable tfoot td {
+  font-size: 14px;
+}
+table.photoTable tfoot .links {
+  text-align: right;
+}
+table.photoTable tfoot .links a{
+  display: inline-block;
+  background: #1C6EA4;
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 5px;
+}

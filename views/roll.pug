@@ -2,4 +2,23 @@ extends layout
 
 block content
   .inner
-    h3= `${roll}`               
+    h1= `${roll.filmBrand} ${roll.filmName}`
+    table.photoTable
+      thead
+        tr
+          th Frame
+          th Shutter
+          th F-Stop
+          th Focal Length
+          th Date/Time
+          th Description
+      tbody
+      each photo, index in roll.photos
+        tr
+          td= `${index+1}` 
+          td= `${photo.shutter}`
+          td= `${photo.fstop}`
+          td= `${photo.focalLength}`
+          td= `${h.moment(photo.date).format('MMM Do YYYY, h:mm a')}`
+          td= `${photo.description}`
+                

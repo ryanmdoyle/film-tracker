@@ -5,7 +5,7 @@ mixin activeRolls()
       .activeRoll
         .activeRoll__info
           h3= `${roll.filmBrand} ${roll.filmName} - ISO ${roll.iso}`
-          b= `📷 ${roll.camera} 🎞️ [number of photos] images recorded`
+          b= `📷 ${roll.camera} 🎞️ ${roll.photos.length} images recorded`
           p= `📆 Started on ${moment(roll.date).format("MMM Do YY")}`
           p= `${roll.description}`
         .activeRoll__buttonArea
