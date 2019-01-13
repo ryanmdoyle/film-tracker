@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "concurrently \"npm run assets\" \"npm run watch\" --names \"🖥️ 📦\" --prefix name",
+    "start": "start.js",
     "assets": "webpack -w",
     "watch": "nodemon start.js",
-    "build": "webpack"
+    "build": "webpack",
+    "dev": "concurrently \"npm run assets\" \"npm run watch\" --names \"🖥️ 📦\" --prefix name",
   },
   "dependencies": {
     "@babel/core": "^7.2.2",
