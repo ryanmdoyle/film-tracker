@@ -3,7 +3,7 @@ extends layout
 block content
   h1= title
   .inner
-    form.form(action='/newPhoto' method='POST')
+    form.form(action=`/${rollSlug}/addPhoto` method='POST')
       label(for='shutter') Shutter Speed
       input(type="text" name='shutter' placeholder="Enter value as the faction of seconds of seconds, such as \'1/125\'")
 

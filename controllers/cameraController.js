@@ -16,10 +16,9 @@ exports.activeRolls = async (req, res) => {
 
 exports.getRoll = async (req, res) => {
   // get roll from params
-  const roll = await Roll.find({ slug: req.params.rollslug })
-  // get all photos assigned to the roll
-  const photos = 
-  res.render('roll', { roll, photos })
+  const roll = await Roll.find({ slug: req.params.rollSlug }).populate() // get all photos assigned to the roll
+  
+  res.render('roll', { title: `${roll.filmName} ${roll.bradName} ${roll.iso}`, roll })
 }
 
 exports.addCameraForm = (req, res) => {
@@ -38,13 +37,13 @@ exports.addCamera = async (req, res) => {
 }
 
 exports.addPhotoForm = (req, res) => {
-  res.render('addPhoto', { title: "Add Photo"} );
+  res.render('addPhoto', { title: "Add Photo", rollSlug: req.params.rollSlug } );
 }
 
 exports.addPhoto = async (req, res) => {
-  const photo = await new Photo(req.body); // .save(); // don't save to a collection, save as array item to a Film roll
+  const photo = await new Photo(req.body).save(); // don't save to a collection, save as array item to a Film roll
   const roll = await Roll.findOneAndUpdate(
-    { slug: req.params.rollslug},
+    { slug: req.params.rollSlug},
     { '$addToSet' : { photos: photo } },
     { new: true }
   )
