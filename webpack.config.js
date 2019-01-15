@@ -8,7 +8,7 @@ module.exports = {
   entry: './public/javascripts/filmTracker-app.js',
 
   output: {
-    path: path.resolve(__dirname, "public", "dist"),
+    path: path.resolve(__dirname, "public"),
     filename: "[name].bundle.js"
   },
 
