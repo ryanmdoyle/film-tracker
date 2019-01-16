@@ -81,19 +81,19 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./public/javascripts/filmTracker-app.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./public/filmTracker-app.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./public/javascripts/filmTracker-app.js":
-/*!***********************************************!*\
-  !*** ./public/javascripts/filmTracker-app.js ***!
-  \***********************************************/
+/***/ "./public/filmTracker-app.js":
+/*!***********************************!*\
+  !*** ./public/filmTracker-app.js ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("\n\n//# sourceURL=webpack:///./public/javascripts/filmTracker-app.js?");
+eval("\n\n//# sourceURL=webpack:///./public/filmTracker-app.js?");
 
 /***/ })
 

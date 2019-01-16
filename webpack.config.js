@@ -5,10 +5,10 @@ const css = { test: /\.css$/, loader: "style-loader" };
 
 module.exports = {
   mode: 'development',
-  entry: './public/javascripts/filmTracker-app.js',
+  entry: './public/filmTracker-app.js',
 
   output: {
-    path: path.resolve(__dirname, "public"),
+    path: path.resolve(__dirname, "public", "dist"),
     filename: "[name].bundle.js"
   },
 
