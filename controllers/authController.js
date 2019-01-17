@@ -55,4 +55,33 @@ exports.forgot = async (req, res) => {
   // 4. redirect to login page
   res.redirect('/login');
 };
-\
+
+exports.resetForm = async (req, res) => {
+  const user = await User.findOne({ 
+    resetPasswordToken: req.params.token,
+    resetPasswordExpires: { $gt : Date.now() }
+  });
+  
+  if (!user) {
+    req.flash('error', 'Link has expired!')
+    return res.redirect('/');
+  }
+
+  res.render('/resetForm', { title: 'Reset your Password', user } );
+}
+
+exports.resetPassword = async (req, res) => {
+  const user = await User.findOn({
+    _id: req.user._id,
+    resetPasswordExpires: { $gt: Date.now()}
+  });
+  
+  // const setPassword = promisify(user.setPassword, user);
+  // await setPassword(req.body.password);
+  // user.resetPasswordToken = undefined;
+  // user.resetPasswordExpires = undefined;
+  // const updatedUser = await user.save();
+  // await req.login(updatedUser);
+  // req.flash('success', '💃 Nice! Your password has been reset! You are now logged in!');
+  // res.redirect('/');
+}

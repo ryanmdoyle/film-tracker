@@ -36,7 +36,8 @@ router.get('/logout', authController.logout);
 
 //Password Reset links
 router.post('/forgot', catchErrors(authController.forgot))
-router.get('/reset/:token', catchErrors(authController.reset))
+router.get('/reset/:token', catchErrors(authController.resetForm))
+router.post('/reset/:token', catchErrors(authController.resetPassword))
 
 router.get('/register', userController.registerForm);
 router.post('/register', 
