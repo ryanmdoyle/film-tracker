@@ -1,6 +1,7 @@
 extends layout
 
 include mixins/_activeRolls
+include mixins/_landing
 include mixins/_loginForm
 
 block content
@@ -9,5 +10,6 @@ block content
     if activeRolls
       +activeRolls()
     else
+      +landing()
       +loginForm()
       

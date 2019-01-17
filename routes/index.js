@@ -34,6 +34,10 @@ router.post('/login',
 ; //fix with async/await?
 router.get('/logout', authController.logout);
 
+//Password Reset links
+router.post('/forgot', catchErrors(authController.forgot))
+router.get('/reset/:token', catchErrors(authController.reset))
+
 router.get('/register', userController.registerForm);
 router.post('/register', 
   userController.validateRegister, 
