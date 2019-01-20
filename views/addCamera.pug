@@ -15,3 +15,6 @@ block content
         option(value='medium-format') Medium Format
         option(value='large-format') Large Format
       input.button(type='submit' value='Add Camera!')
+    h2 Current Cameras You Own
+    each camera in cameras
+      h3= `📷 ${camera.brand} ${camera.model}`

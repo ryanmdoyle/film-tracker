@@ -6,3 +6,17 @@ block content
 
     form.form(action='/logout' method='GET')
       input.button(type='submit' value='Log me out!')
+    
+    h2 Completed Rolls
+    each roll in rolls
+      .rollsContainer
+        .activeRoll
+          .activeRoll__info
+            h3= `${roll.filmBrand} ${roll.filmName} - ISO ${roll.iso}`
+            b= `📷 ${roll.camera} 🎞️ ${roll.photos.length} images recorded`
+            p= `📆 Started on ${moment(roll.date).format("MMM Do YY")}`
+            p= `${roll.description}`
+          .activeRoll__buttonArea
+            a(href=`/${roll.slug}/roll`)
+              button.activeRoll__button--button View/Edit Roll 🔍
+      

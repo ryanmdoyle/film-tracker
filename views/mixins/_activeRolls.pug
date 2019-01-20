@@ -13,3 +13,6 @@ mixin activeRolls()
             button.activeRoll__button--button Record New Photo 📸
           a(href=`/${roll.slug}/roll`)
             button.activeRoll__button--button View/Edit Roll 🔍
+  else
+    h2 You haven't started any rolls!
+    p To begin, add a camera that you would like to use, then start a new roll.

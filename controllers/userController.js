@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+const Roll = mongoose.model('Roll');
 
 exports.loginForm = (req, res) => {
   res.render('login', { title: 'Login' });
@@ -43,8 +44,9 @@ exports.register = async (req, res, next) => { //registers the user to the db af
   });
 };
 
-exports.account = (req, res) => {
-  res.render('account', { title: 'Edit Your Account' });
+exports.account = async (req, res) => {
+  const rolls = await Roll.find({});
+  res.render('account', { title: 'Edit Your Account', rolls });
 };
 
 exports.updateAccount = async (req, res) => {

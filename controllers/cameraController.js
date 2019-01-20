@@ -31,8 +31,9 @@ exports.getRoll = async (req, res) => {
   res.render('roll', { title: "replace with film stuff", roll: roll, photos: photos })
 }
 
-exports.addCameraForm = (req, res) => {
-  res.render('addCamera', { title: "Add a Camera" })
+exports.addCameraForm = async (req, res) => {
+  const cameras = await Camera.find( { owner : req.user.id} ) // find user (their cameras are contained in 'cameras' array)
+  res.render('addCamera', { title: "Add a Camera", cameras })
 }
 
 exports.addCamera = async (req, res) => {
@@ -43,7 +44,8 @@ exports.addCamera = async (req, res) => {
     { owner: req.user.id },
     { new: true } //return the new user, opposed to what you hade before the update
   );
-  res.redirect('/'); //redirects to index, where current list of rolls are shown
+  req.flash('success', `${req.body.brand} ${req.body.model} successfully added!`)
+  res.redirect('/addCamera'); //redirects to index, where current list of rolls are shown
 }
 
 exports.addPhotoForm = (req, res) => {
@@ -57,6 +59,7 @@ exports.addPhoto = async (req, res) => {
     { '$addToSet' : { photos: photo } },
     { new: true }
   )
+  req.flash('success', 'Successfully recorded image. Hope it turns out!');
   res.redirect('/');
 }
 
@@ -74,7 +77,19 @@ exports.newRoll = async (req, res) => {
     { '$addToSet' : { rolls: roll } }, //$pull(remove) or $addToSet(add to array) the roll
     { new: true } //return the new user, opposed to what you hade before the update
   );
+  req.flash('success', `Successfully loaded ${req.body.filmName} in ${req.body.camera}`);
   res.redirect('/'); //redirects to index, where current list of rolls are shown
+}
+
+exports.finishRoll = async (req, res) => {
+  const roll = await Roll.findOne({ slug: req.params.rollSlug });
+  const finishedRoll = await Roll.findByIdAndUpdate(
+    roll._id,
+    { active: false },
+    { new: true }
+  );
+  req.flash('success', `Completed ${finishedRoll.filmBrand} ${finishedRoll.filmName}. Go to account to see completed rolls.`);
+  res.redirect('/');
 }
 
 exports.login = (req, res) => {

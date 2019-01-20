@@ -15,7 +15,7 @@ block content
         each camera in cameras
           option(value=`${camera.brand} ${camera.model}`)= `${camera.brand} ${camera.model}`
       label(for='date') Date Started
-      input(type="date" name='date')
+      input(type="date" name='date' value=`${h.moment().format('YYYY-MM-DD')}`)
       label(for='description') Description/Notes
-      input(type="text" name='description' placeholder="other information")
+      input(type="text" name='description' placeholder="Optional notes")
       input.button(type='submit' value='Load a new roll!')

@@ -12,12 +12,13 @@ const {catchErrors} = require('../handlers/errorHandlers');
 router.get('/', catchErrors(cameraController.activeRolls));
 
 // Adding Cameras
-router.get('/addCamera', cameraController.addCameraForm)
+router.get('/addCamera', catchErrors(cameraController.addCameraForm));
 router.post('/addCamera', catchErrors(cameraController.addCamera));
 
-// Adding Rolls
+// Adding/Finishing Rolls
 router.get('/newRoll', catchErrors(cameraController.newRollForm));
 router.post('/newRoll', catchErrors(cameraController.newRoll));
+router.post('/:rollSlug/roll/finish', catchErrors(cameraController.finishRoll));
 
 // Adding Photos to Rolls
 router.get('/:rollSlug/addPhoto', cameraController.addPhotoForm);

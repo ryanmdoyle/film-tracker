@@ -21,4 +21,6 @@ block content
           td= `${photo.focalLength}`
           td= `${h.moment(photo.date).format('MMM Do YYYY, h:mm a')}`
           td= `${photo.description}`
+    form.form(action=`/${roll.slug}/roll/finish` method='POST')
+      input.button(type='submit' value='Finish Roll')
                 
