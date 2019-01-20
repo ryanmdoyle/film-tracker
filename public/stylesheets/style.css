@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 h1 {
@@ -19,6 +19,7 @@ p {
 a {
   color: black;
   text-decoration: none;
+  width: 100%;
 }
 
 label {
@@ -112,6 +113,10 @@ svg {
   margin-bottom: 1.2rem;
 }
 
+.form input {
+  border-color: black;
+}
+
 .inner {
   max-width:900px;
   margin: 0 auto;
@@ -162,12 +167,19 @@ svg {
   background-color: white;
 }
 
-@media (max-width: 700px) {
+@media screen and (max-width: 550px) {
   .activeRoll {
     flex-direction: column;
   }
   .activeRoll__buttonArea {
     width: 100%;
+    padding-left: 5%;
+  }
+  body {
+    font: 1.5em "Lucida Grande", Helvetica, Arial, sans-serif;
+  }
+  form {
+    font: 1.5em "Lucida Grande", Helvetica, Arial, sans-serif;
   }
 }
 
@@ -226,13 +238,13 @@ svg {
   border-radius: 3px;
 }
 .flash--success {
-  background: linear-gradient(135deg, rgba(210, 255, 82, 1) 0%, rgba(145, 232, 66, 1) 100%);
+  background: linear-gradient(135deg, rgba(49, 158, 46) 0%, rgb(49, 158, 46) 100%);
 }
 .flash--error {
-  background: linear-gradient(20deg, rgba(255, 0, 0, 1) 0%, rgba(200, 0, 0, 1) 100%);
+  background: linear-gradient(20deg, rgba(200, 0, 0, 1) 0%, rgba(200, 0, 0, 1) 100%);
 }
 .flash--info {
-  background: linear-gradient(35deg, rgba(241, 231, 103, 1) 0%, rgba(254, 182, 69, 1) 100%);
+  background: linear-gradient(35deg, rgba(254, 182, 69, 1) 0%, rgba(254, 182, 69, 1) 100%);
 }
 .flash p {
   margin: 0;
