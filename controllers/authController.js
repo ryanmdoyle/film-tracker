@@ -71,17 +71,16 @@ exports.resetForm = async (req, res) => {
 }
 
 exports.resetPassword = async (req, res) => {
-  const user = await User.findOn({
+  const user = await User.findOne({
     _id: req.user._id,
     resetPasswordExpires: { $gt: Date.now()}
   });
-  
-  // const setPassword = promisify(user.setPassword, user);
-  // await setPassword(req.body.password);
-  // user.resetPasswordToken = undefined;
-  // user.resetPasswordExpires = undefined;
-  // const updatedUser = await user.save();
-  // await req.login(updatedUser);
-  // req.flash('success', '💃 Nice! Your password has been reset! You are now logged in!');
-  // res.redirect('/');
+
+  await user.setPassword(req.body.password); // from passport-local-mongoose
+  user.resetPasswordToken = undefined; // remove the token and the expire date from the user data
+  user.resetPasswordExpires = undefined;
+  const updatedUser = await user.save();
+  await req.login(updatedUser); // take the new user, log them in to the site
+  req.flash('success', 'Nice! Your password has been reset! You are now logged in!');
+  res.redirect('/');
 }
