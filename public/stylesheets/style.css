@@ -1,11 +1,23 @@
+html {
+  font-size: 16px; 
+}
 body {
   margin: 0;
   padding: 0;
-  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family:"Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 h1 {
   text-align: center;
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.25rem;
 }
 
 h1, h2 {
@@ -13,7 +25,7 @@ h1, h2 {
 }
 
 p {
-  font-size: 1.2em;
+  font-size: 1rem;
 }
 
 a {
@@ -34,7 +46,7 @@ label {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .button:hover {
@@ -45,7 +57,7 @@ label {
 
 .nav {
   font-family: sans-serif;
-  font-size: 1.3em;
+  font-size: 1.25rem;
   font-weight: bold;
   
   width: 100vw;
@@ -68,7 +80,7 @@ label {
 .nav__li svg, .nav__li p {
   width: 100%;
   text-align: center;
-  font-size: 1em;
+  font-size: 1rem;
   margin: 0;
 }
 
@@ -109,7 +121,7 @@ svg {
 
 .form > * {
   width: 100%;
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-bottom: 1.2rem;
 }
 
@@ -159,7 +171,7 @@ svg {
   color: white;
   background-color: black;
   margin: 10px 10px 10px 10px;
-  font-size: 0.9em;
+  font-size: 1rem;
 }
 
 .activeRoll__button--button:hover {
@@ -167,19 +179,9 @@ svg {
   background-color: white;
 }
 
-@media screen and (max-width: 550px) {
-  .activeRoll {
-    flex-direction: column;
-  }
-  .activeRoll__buttonArea {
-    width: 100%;
-    padding-left: 5%;
-  }
-  body {
-    font: 1.5em "Lucida Grande", Helvetica, Arial, sans-serif;
-  }
-  form {
-    font: 1.5em "Lucida Grande", Helvetica, Arial, sans-serif;
+@media screen and (max-width: 500px) {
+  html {
+    font-size: 20px;
   }
 }
 
@@ -261,7 +263,7 @@ table.photoTable td, table.photoTable th {
   padding: 4px 4px;
 }
 table.photoTable tbody td {
-  font-size: 13px;
+  font-size: 1rem;
 }
 table.photoTable tr:nth-child(even) {
   background: #E7E7E7;
@@ -270,7 +272,7 @@ table.photoTable thead {
   background: #000000;
 }
 table.photoTable thead th {
-  font-size: 15px;
+  font-size: 1.1rem;
   font-weight: normal;
   color: #FFFFFF;
   text-align: center;
@@ -281,7 +283,7 @@ table.photoTable thead th:first-child {
 }
 
 table.photoTable tfoot td {
-  font-size: 14px;
+  font-size: 0.8rem;
 }
 table.photoTable tfoot .links {
   text-align: right;
