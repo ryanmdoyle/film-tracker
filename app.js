@@ -12,6 +12,7 @@ const expressValidator = require('express-validator');
 const createError = require('http-errors');
 const logger = require('morgan');
 const helpers = require('./helpers');
+const helmet = require('helmet')
 require('./handlers/passport');
 
 const indexRouter = require('./routes/index');
@@ -36,6 +37,9 @@ app.use(expressValidator());
 
 // deals with cookies passed in the requests
 app.use(cookieParser());
+
+// security
+app.use(helmet())
 
 // Sessions allow us to store data on visitors from request to request
 // This keeps users logged in and allows us to send flash messages
